@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Isabela Nogueira Nunes</title>
 
-  <!-- Google Font -->
+  <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
+
+  <!-- Biblioteca Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
     * {
@@ -16,17 +19,15 @@
     }
 
     body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background: #f8f9fa;
       font-family: 'Inter', sans-serif;
       color: #111;
+      padding: 60px 20px;
     }
 
     .container {
       text-align: center;
+      margin-bottom: 80px;
     }
 
     h1 {
@@ -36,7 +37,7 @@
       margin-bottom: 10px;
     }
 
-    p {
+    p.subtitle {
       font-weight: 300;
       font-size: 1rem;
       color: #666;
@@ -51,14 +52,70 @@
       margin: 20px auto;
       opacity: 0.2;
     }
+
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .section h2 {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    #markdown-content {
+      line-height: 1.7;
+      color: #333;
+    }
+
+    #markdown-content h1,
+    #markdown-content h2,
+    #markdown-content h3 {
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    #markdown-content p {
+      margin-bottom: 16px;
+    }
+
+    #markdown-content code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 
 <body>
+
   <div class="container">
     <h1>Isabela Nogueira Nunes</h1>
     <div class="line"></div>
-    <p> 🚧 Em construção | Under construction 🚧 </p>
+    <p class="subtitle">🚧 Em construção | Under construction 🚧</p>
   </div>
+
+  <!-- Nova seção -->
+  <section class="section">
+    <h2>Projeto</h2>
+
+    <div id="markdown-content">
+      Carregando conteúdo...
+    </div>
+  </section>
+
+  <script>
+    fetch("git.md")
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById("markdown-content").innerHTML =
+          marked.parse(text);
+      });
+  </script>
+
 </body>
 </html>
